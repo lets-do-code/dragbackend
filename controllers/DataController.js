@@ -16,8 +16,9 @@ export const getData = async (req, res) => {
                 email: user.email,
                 orders: userOrders.map(order => ({
                     orderDate: order.orderDate,
-                    productName: order.productId.name,
-                    productPrice: order.productId.price
+                    // productName: order.productId.name,
+                    // productPrice: order.productId.price,
+                    productId: order.productId
                 }))
             };
         }));
@@ -124,9 +125,9 @@ export const addData = async (req, res) => {
 
         // Static Order Data (linking Users with Products)
         const orders = [
-            { userId: insertedUsers[0]._id, productId: insertedProducts[0]._id, orderDate: new Date() },
-            { userId: insertedUsers[0]._id, productId: insertedProducts[1]._id, orderDate: new Date() },
-            { userId: insertedUsers[1]._id, productId: insertedProducts[2]._id, orderDate: new Date() }
+            { name: insertedUsers[0].name, userId: insertedUsers[0]._id, productId: insertedProducts[0]._id, orderDate: new Date() },
+            { name: insertedUsers[0].name, userId: insertedUsers[0]._id, productId: insertedProducts[1]._id, orderDate: new Date() },
+            { name: insertedUsers[1].name, userId: insertedUsers[1]._id, productId: insertedProducts[2]._id, orderDate: new Date() }
         ];
 
         // Insert Orders into the database
